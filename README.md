@@ -1,4 +1,4 @@
 ![logo](img/darwinian_logo.svg)
-# Darwinian
+A text generating neural network.
 
 

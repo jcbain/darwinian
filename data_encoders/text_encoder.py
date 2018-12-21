@@ -30,7 +30,7 @@ class EncodingProletariat(object):
     def __init__(self, corpus_list, num_inputs, lowercase=False, stopwords_list=None):
         self.corpus_list = corpus_list
         self.num_inputs = num_inputs
-        self.preprocessed = self._preprocess(self.corpus_list, lowercase=lowercase, stopwords_list=None)
+        self.preprocessed = self._preprocess(self.corpus_list, lowercase=lowercase, stopwords_list=stopwords_list)
         self.vocab_dict, self.reverse_dict = self._create_dictionary(self.preprocessed)
         self.encoded_list = self._encode_list(self.preprocessed, self.vocab_dict)
         self.encodings = self._configure_arrays(self.encoded_list, self.num_inputs)
@@ -133,11 +133,14 @@ class EncodingProletariat(object):
 
         Returns
         -------
-        numpy.array
-            A 2-dimensional array.
+        tuple
+            A tuple of a 2-dimensional numpy.array representative of the inputs and a 1-dimensional
+            numpy.array representing the targets.
         """
-        config_lists = []
+        config_lists_x = []
+        config_lists_y = []
         for i in range(0, len(encoded_list) - num_inputs):
-            config_lists.append(list(encoded_list[i: i + (num_inputs + 1)]))
+            config_lists_x.append(list(encoded_list[i: i + num_inputs]))
+            config_lists_y.append(encoded_list[i + num_inputs])
 
-        return np.array(config_lists)
+        return np.array(config_lists_x), np.array(config_lists_y)

@@ -1,6 +1,32 @@
+# encoding utf-8
+#
+# author: James Bain
+# maintainer: James Bain <jamescbain@gmail.com>
+
+import numpy as np
 
 
-class EncodingProletariate(object):
+class EncodingProletariat(object):
+    """A Encoding Class for Text Generation
+
+    This encoding class provides the components for pre-processing text data for training a neural net designed to
+    generate texts. Text data must be in the format of a python list where each item in the list is either a word or
+    punctuation.
+
+    Parameters
+    ----------
+    corpus_list: list
+        List of words in the corpus.
+
+    num_inputs: int
+        The number of input values per row.
+
+    lowercase: bool
+        Option to lowercase all words int he corpus_list.
+
+    stopwords_list: list
+        List of stopwords to remove from the corpus_list.
+    """
     def __init__(self, corpus_list, num_inputs, lowercase=False, stopwords_list=None):
         self.corpus_list = corpus_list
         self.num_inputs = num_inputs
@@ -12,8 +38,8 @@ class EncodingProletariate(object):
     def _preprocess(self, corpus_list, lowercase=False, stopwords_list=None):
         """Preprocess the Corpus List.
 
-        Provides some simple preprocessing steps that could be beneficial for training purposes. This includes
-        an option to lowercase all words in the corpus list and to remove stopwords.
+        Provides some simple preprocessing steps that could be beneficial for training purposes. This includes an option
+        to lowercase all words in the corpus list and to remove stopwords.
 
         Parameters
         ----------
@@ -92,10 +118,10 @@ class EncodingProletariate(object):
     def _configure_arrays(self, encoded_list, num_inputs):
         """Configure the Encoded Data into a 2-dimensional Array
 
-        Creates a 2-dimensional array from the encoded data of an arbitrary number of inputs. Each row
-        contains `num_inputs` + 1 values where the last value in each row represents the target value and
-        the ones previous the inputs. These are just shifting rows where the first `num_inputs` are the first
-        inputs in row 1 and then for row 2 the row shifts over by 1.
+        Creates a 2-dimensional array from the encoded data of an arbitrary number of inputs. Each row contains
+        `num_inputs` + 1 values where the last value in each row represents the target value and the ones previous the
+        inputs. These are just shifting rows where the first `num_inputs` are the first inputs in row 1 and then for row
+        2 the row shifts over by 1.
 
         Parameters
         ----------

@@ -33,7 +33,7 @@ class EncodingProletariat(object):
         self.preprocessed = self._preprocess(self.corpus_list, lowercase=lowercase, stopwords_list=stopwords_list)
         self.vocab_dict, self.reverse_dict = self._create_dictionary(self.preprocessed)
         self.encoded_list = self._encode_list(self.preprocessed, self.vocab_dict)
-        self.encodings = self._configure_arrays(self.encoded_list, self.num_inputs)
+        self.encodings_x, self.encodings_y = self._configure_arrays(self.encoded_list, self.num_inputs)
 
     def _preprocess(self, corpus_list, lowercase=False, stopwords_list=None):
         """Preprocess the Corpus List.

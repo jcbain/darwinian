@@ -7,7 +7,7 @@ import numpy as np
 
 
 class EncodingProletariat(object):
-    """A Encoding Class for Text Generation
+    """A Encoding Class for Text Generation via LSTM
 
     This encoding class provides the components for pre-processing text data for training a neural net designed to
     generate texts. Text data must be in the format of a python list where each item in the list is either a word or

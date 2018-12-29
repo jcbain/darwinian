@@ -3,6 +3,9 @@
 # author: James Bain
 # maintainer: James Bain <jamescbain@gmail.com>
 
+# TODO: Build a batch splitter
+#       - randomize indexes
+#       - split by percentage
 import numpy as np
 
 
